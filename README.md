@@ -8,7 +8,7 @@
 <img alt="Twitter: theapache64" src="https://img.shields.io/twitter/follow/theapache64.svg?style=social" />
 </a>
 
-> A simple example on how to use Decomposer for navigation and state keeping in compose desktop
+> A simple example of how to use Decomposer for navigation and state keeping in Compose desktop
 
 ### ✨ Demo
 
