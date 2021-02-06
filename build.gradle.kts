@@ -17,13 +17,11 @@ repositories {
 }
 
 dependencies {
+    implementation(kotlin("stdlib-jdk8"))
     implementation(compose.desktop.currentOs)
-
     // Decompose : Decompose
     implementation("com.arkivanov.decompose:decompose:0.1.7")
     implementation("com.arkivanov.decompose:extensions-compose-jetbrains:0.1.7")
-    implementation("com.arkivanov.mvikotlin:mvikotlin:2.0.0")
-    implementation(kotlin("stdlib-jdk8"))
 
 }
 
@@ -36,7 +34,7 @@ compose.desktop {
         mainClass = "MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "WhoAmIDesktop"
+            packageName = "Decompose Desktop Example"
         }
     }
 }
