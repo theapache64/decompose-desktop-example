@@ -14,7 +14,7 @@ import androidx.compose.ui.text.platform.Font
 val primary = Color(48, 163, 230)
 val secondary = Color(24, 25, 29)
 
-private val LightColors = darkColors(
+private val DarkColors = darkColors(
     primary = primary,
     secondary = secondary,
     surface = secondary,
@@ -27,7 +27,7 @@ fun DecomposeDesktopExampleTheme(
     content: @Composable () -> Unit
 ) {
     MaterialTheme(
-        colors = LightColors,
+        colors = DarkColors,
         typography = Typography(
             defaultFontFamily = FontFamily(Font("google_sans_regular.ttf"))
         )
