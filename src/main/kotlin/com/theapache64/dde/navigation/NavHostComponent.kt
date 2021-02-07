@@ -19,7 +19,6 @@ class NavHostComponent(
 
     private val router = router<ScreenConfig, Component>(
         initialConfiguration = ScreenConfig.Input,
-        handleBackButton = true,
         componentFactory = ::createScreenComponent
     )
 
