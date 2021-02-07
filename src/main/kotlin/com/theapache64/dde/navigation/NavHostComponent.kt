@@ -6,6 +6,7 @@ import com.arkivanov.decompose.extensions.compose.jetbrains.Children
 import com.arkivanov.decompose.pop
 import com.arkivanov.decompose.push
 import com.arkivanov.decompose.router
+import com.arkivanov.decompose.statekeeper.Parcelable
 import com.theapache64.dde.screen.greeting.GreetingScreenComponent
 import com.theapache64.dde.screen.input.InputScreenComponent
 
@@ -69,4 +70,10 @@ class NavHostComponent(
             child.render()
         }
     }
+
+    private sealed class ScreenConfig : Parcelable {
+        object Input : ScreenConfig()
+        data class Greeting(val name: String) : ScreenConfig()
+    }
 }
+
