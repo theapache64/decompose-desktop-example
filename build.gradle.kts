@@ -3,8 +3,8 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.21-2"
-    id("org.jetbrains.compose") version "0.3.0-build146"
+    kotlin("jvm") version "1.4.32"
+    id("org.jetbrains.compose") version "0.4.0-build180"
 }
 
 group = "com.theapache64"
@@ -20,8 +20,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(compose.desktop.currentOs)
     // Decompose : Decompose
-    implementation("com.arkivanov.decompose:decompose:0.1.7")
-    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:0.1.7")
+    implementation("com.arkivanov.decompose:decompose:0.2.1")
+    implementation("com.arkivanov.decompose:extensions-compose-jetbrains:0.2.1")
 
 }
 
@@ -31,7 +31,7 @@ tasks.withType<KotlinCompile>() {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "com.theapache64.dde.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "Decompose Desktop Example"

@@ -19,7 +19,7 @@ class NavHostComponent(
 
     private val router = router<ScreenConfig, Component>(
         initialConfiguration = ScreenConfig.Input,
-        componentFactory = ::createScreenComponent
+        childFactory = ::createScreenComponent
     )
 
     /**
@@ -65,8 +65,8 @@ class NavHostComponent(
      */
     @Composable
     override fun render() {
-        Children(routerState = router.state) { child, _ ->
-            child.render()
+        Children(routerState = router.state) {
+            it.instance.render()
         }
     }
 
