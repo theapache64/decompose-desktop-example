@@ -3,10 +3,10 @@ package com.theapache64.dde.navigation
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.extensions.compose.jetbrains.Children
-import com.arkivanov.decompose.pop
-import com.arkivanov.decompose.push
-import com.arkivanov.decompose.router
-import com.arkivanov.decompose.statekeeper.Parcelable
+import com.arkivanov.decompose.router.pop
+import com.arkivanov.decompose.router.push
+import com.arkivanov.decompose.router.router
+import com.arkivanov.essenty.parcelable.Parcelable
 import com.theapache64.dde.screen.greeting.GreetingScreenComponent
 import com.theapache64.dde.screen.input.InputScreenComponent
 
