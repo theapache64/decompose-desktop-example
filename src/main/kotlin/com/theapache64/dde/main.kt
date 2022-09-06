@@ -1,19 +1,21 @@
 package com.theapache64.dde
 
-import androidx.compose.desktop.Window
-import com.arkivanov.decompose.extensions.compose.jetbrains.rememberRootComponent
-import com.arkivanov.decompose.extensions.compose.jetbrains.rootComponent
+import androidx.compose.ui.window.singleWindowApplication
+import com.arkivanov.decompose.DefaultComponentContext
+import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import com.theapache64.dde.navigation.NavHostComponent
 import com.theapache64.dde.theme.DecomposeDesktopExampleTheme
 
 /**
  * Where all magic starts ;)
  */
-fun main() = Window(
+fun main() = singleWindowApplication(
     title = "Decompose Desktop Example"
 ) {
+    val lifecycle = LifecycleRegistry()
+    val root = NavHostComponent(DefaultComponentContext(lifecycle))
+
     DecomposeDesktopExampleTheme {
-        rememberRootComponent(factory = ::NavHostComponent)
-            .render()
+        root.render()
     }
 }
