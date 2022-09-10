@@ -10,6 +10,8 @@ class GreetingScreenComponent(
     private val onGoBackClicked: () -> Unit
 ) : Component, ComponentContext by componentContext {
 
+    private val greeting = greetings.random()
+
     companion object {
         private val greetings = listOf(
             "Bonjour",
@@ -25,7 +27,7 @@ class GreetingScreenComponent(
     @Composable
     override fun render() {
         GreetingScreen(
-            greeting = "${greetings.random()}, $name",
+            greeting = "$greeting, $name",
             onGoBackClicked = onGoBackClicked
         )
     }

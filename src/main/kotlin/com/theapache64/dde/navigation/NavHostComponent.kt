@@ -2,11 +2,17 @@ package com.theapache64.dde.navigation
 
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.decompose.extensions.compose.jetbrains.Children
-import com.arkivanov.decompose.pop
-import com.arkivanov.decompose.push
-import com.arkivanov.decompose.router
-import com.arkivanov.decompose.statekeeper.Parcelable
+import com.arkivanov.decompose.ExperimentalDecomposeApi
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.plus
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.scale
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
+import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.essenty.parcelable.Parcelable
 import com.theapache64.dde.screen.greeting.GreetingScreenComponent
 import com.theapache64.dde.screen.input.InputScreenComponent
 
@@ -16,8 +22,9 @@ import com.theapache64.dde.screen.input.InputScreenComponent
 class NavHostComponent(
     componentContext: ComponentContext
 ) : Component, ComponentContext by componentContext {
-
-    private val router = router<ScreenConfig, Component>(
+    private val navigation = StackNavigation<ScreenConfig>()
+    private val stack = childStack(
+        source = navigation,
         initialConfiguration = ScreenConfig.Input,
         childFactory = ::createScreenComponent
     )
@@ -49,23 +56,27 @@ class NavHostComponent(
      * Invoked when `GO` button clicked (InputScreen)
      */
     private fun onGoClicked(name: String) {
-        router.push(ScreenConfig.Greeting(name))
+        navigation.push(ScreenConfig.Greeting(name))
     }
 
     /**
      * Invoked when `GO BACK` button clicked (GreetingScreen)
      */
     private fun onGoBackClicked() {
-        router.pop()
+        navigation.pop()
     }
 
 
     /**
      * Renders screen as per request
      */
+    @OptIn(ExperimentalDecomposeApi::class)
     @Composable
     override fun render() {
-        Children(routerState = router.state) {
+        Children(
+            stack = stack,
+            animation = stackAnimation(fade() + scale()),
+        ) {
             it.instance.render()
         }
     }
