@@ -4,13 +4,17 @@ import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.ExperimentalDecomposeApi
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children
-import com.arkivanov.essenty.parcelable.Parcelable
-import com.theapache64.dde.screen.greeting.GreetingScreenComponent
-import com.theapache64.dde.screen.input.InputScreenComponent
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.fade
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.plus
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.scale
+import com.arkivanov.decompose.extensions.compose.jetbrains.stack.animation.stackAnimation
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.essenty.parcelable.Parcelable
+import com.theapache64.dde.screen.greeting.GreetingScreenComponent
+import com.theapache64.dde.screen.input.InputScreenComponent
 
 /**
  * Navigator
@@ -21,7 +25,7 @@ class NavHostComponent(
     private val navigation = StackNavigation<ScreenConfig>()
     private val stack = childStack(
         source = navigation,
-        initialStack = { listOf(ScreenConfig.Input) },
+        initialConfiguration = ScreenConfig.Input,
         childFactory = ::createScreenComponent
     )
 
@@ -69,7 +73,10 @@ class NavHostComponent(
     @OptIn(ExperimentalDecomposeApi::class)
     @Composable
     override fun render() {
-        Children(stack){
+        Children(
+            stack = stack,
+            animation = stackAnimation(fade() + scale()),
+        ) {
             it.instance.render()
         }
     }
